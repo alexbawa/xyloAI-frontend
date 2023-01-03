@@ -2,6 +2,7 @@ import React from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing/Landing";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import LoginHandler from "./pages/LoginHandler/LoginHandler";
 import './App.css';
 
 
@@ -11,9 +12,12 @@ class App extends React.Component {
 
     this.state = {
       user: null,
+      token: null,
+      timeout: null,
     }
 
     this.updateUser = this.updateUser.bind(this);
+    this.updateAuth = this.updateAuth.bind(this);
   }
 
   updateUser(newUser) {
@@ -22,12 +26,17 @@ class App extends React.Component {
     })
   }
 
+  updateAuth(newAuth) {
+    this.setState(newAuth);
+  }
+
   render() {
     return (
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Landing updateUser={this.updateUser} user={this.state.user}/>}/>
-          <Route path="/dashboard" element={<Dashboard updateUser={this.updateUser} user={this.state.user}/>}/>
+          <Route path="/" element={<Landing token={this.state.token}/>}/>
+          <Route path="/dashboard" element={<Dashboard updateAuth={this.updateAuth} token={this.state.token}/>}/>
+          <Route path="/loginHandler/" element={<LoginHandler token={this.state.token} updateAuth={this.updateAuth}/>}/>
         </Routes>
       </BrowserRouter>
     )
