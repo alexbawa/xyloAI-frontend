@@ -14,7 +14,7 @@ class Landing extends React.Component {
     }
 
     render() {
-        if(!this.props.token) {
+        if(!this.props.user) {
             return (
                 <div className="page-container">
                     <p>This is the landing page.</p>

@@ -13,30 +13,28 @@ class App extends React.Component {
     this.state = {
       user: null,
       token: null,
-      timeout: null,
     }
 
     this.updateUser = this.updateUser.bind(this);
-    this.updateAuth = this.updateAuth.bind(this);
+    this.updateToken = this.updateToken.bind(this);
   }
 
   updateUser(newUser) {
-    this.setState({
-      user: newUser,
-    })
+    this.setState({user: newUser})
   }
 
-  updateAuth(newAuth) {
-    this.setState(newAuth);
+  updateToken(newToken, timeout) {
+    this.setState(newToken);
+    setTimeout(() => {alert("Token expired!")}, timeout * 1000);
   }
 
   render() {
     return (
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Landing token={this.state.token}/>}/>
-          <Route path="/dashboard" element={<Dashboard updateAuth={this.updateAuth} token={this.state.token}/>}/>
-          <Route path="/loginHandler/" element={<LoginHandler token={this.state.token} updateAuth={this.updateAuth}/>}/>
+          <Route path="/" element={<Landing user={this.state.user}/>}/>
+          <Route path="/dashboard" element={<Dashboard user={this.state.user}/>}/>
+          <Route path="/loginHandler/" element={<LoginHandler user={this.state.user} updateUser={this.updateUser} updateAuth={this.updateToken}/>}/>
         </Routes>
       </BrowserRouter>
     )

@@ -9,14 +9,14 @@ class Dashboard extends React.Component {
     }
 
     handleLogout() {
-        this.props.updateAuth({token: null, timeout: null});
+        this.props.updateUser(null);
     }
 
     render() {
-        if(this.props.token) {
+        if(this.props.user) {
             return (
                 <div className="page-container">
-                    <p>This is the dashboard page for da User</p>
+                    <p>This is the dashboard page for {this.props.user.spotify_email}</p>
                     <button onClick={this.handleLogout}>Logout</button>
                 </div>
             );
