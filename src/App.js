@@ -1,25 +1,37 @@
-import logo from './logo.svg';
+import React from "react"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Landing from "./pages/Landing/Landing";
+import Dashboard from "./pages/Dashboard/Dashboard";
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      user: null,
+    }
+
+    this.updateUser = this.updateUser.bind(this);
+  }
+
+  updateUser(newUser) {
+    this.setState({
+      user: newUser,
+    })
+  }
+
+  render() {
+    return (
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Landing updateUser={this.updateUser} user={this.state.user}/>}/>
+          <Route path="/dashboard" element={<Dashboard updateUser={this.updateUser} user={this.state.user}/>}/>
+        </Routes>
+      </BrowserRouter>
+    )
+  }
 }
 
 export default App;
