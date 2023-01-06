@@ -36,9 +36,8 @@ class SearchBar extends React.Component {
         if(this.state.inspiration) {
             let generatedSongs = await this.generate(this.state.description, this.state.inspiration);
             let matchingSongs = await Spotify.findMatchingSongs(this.props.token, generatedSongs);
-            console.log(this.props.user);
             let draftPlaylist = await Server.createPlaylist(this.props.user._id, matchingSongs);
-            console.log(draftPlaylist);
+            this.props.addDraft(draftPlaylist);
         } else {
             alert("Please configure all playlist options.")
         }

@@ -1,0 +1,23 @@
+.draft {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: rgb(240, 232, 238);
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+.draft-name {
+    margin-left: 20px;
+}
+
+.draft-count {
+    margin-right: 20px;
+}
+
+.draft:hover {
+    background-color: rgb(234, 187, 222);
+}

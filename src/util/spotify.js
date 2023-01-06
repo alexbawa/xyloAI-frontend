@@ -60,6 +60,23 @@ const Spotify = {
             let song = tracks.tracks.items[0];
             return song.id
         })
+    },
+
+    async batchGetSongsByID(token, songIDs) {
+        const headers = this.createAuthHeader(token);
+
+        let songs = await Promise.all(songIDs.map(songID => {
+            return fetch(`https://api.spotify.com/v1/tracks/${songID}`,{headers}).then(response => response.json());
+        }))
+
+        return songs.map(song => {
+            return {
+                id: song.id,
+                title: song.name,
+                artists: song.artists.map(artist => artist.name),
+                coverArt: song.album.images[0].url,
+            }
+        })
     }
 }
 

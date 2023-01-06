@@ -51,7 +51,7 @@ const Server = {
 
         createdPlaylist = await createdPlaylist.json();
         return createdPlaylist;
-    }
+    },
 }
 
 export default Server;
