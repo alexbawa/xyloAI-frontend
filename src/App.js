@@ -12,15 +12,21 @@ class App extends React.Component {
 
     this.state = {
       user: null,
+      userPlaylists: [],
       token: null,
     }
 
     this.updateUser = this.updateUser.bind(this);
+    this.updateUserPlaylists = this.updateUserPlaylists.bind(this);
     this.updateToken = this.updateToken.bind(this);
   }
 
   updateUser(newUser) {
     this.setState({user: newUser})
+  }
+
+  updateUserPlaylists(newPlaylists) {
+    this.setState({userPlaylists: newPlaylists});
   }
 
   updateToken(newToken, timeout) {
@@ -33,8 +39,8 @@ class App extends React.Component {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing user={this.state.user}/>}/>
-          <Route path="/dashboard" element={<Dashboard user={this.state.user}/>}/>
-          <Route path="/loginHandler/" element={<LoginHandler user={this.state.user} updateUser={this.updateUser} updateAuth={this.updateToken}/>}/>
+          <Route path="/dashboard" element={<Dashboard token={this.state.token} userPlaylists={this.state.userPlaylists} user={this.state.user}/>}/>
+          <Route path="/loginHandler/" element={<LoginHandler user={this.state.user} updateUser={this.updateUser} updateUserPlaylists={this.updateUserPlaylists} updateAuth={this.updateToken}/>}/>
         </Routes>
       </BrowserRouter>
     )

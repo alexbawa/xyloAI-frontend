@@ -1,5 +1,6 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
+import SearchBar from "../../components/SearchBar/SearchBar";
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -16,8 +17,7 @@ class Dashboard extends React.Component {
         if(this.props.user) {
             return (
                 <div className="page-container">
-                    <p>This is the dashboard page for {this.props.user.spotify_email}</p>
-                    <button onClick={this.handleLogout}>Logout</button>
+                    <SearchBar token={this.props.token} user={this.props.user} userPlaylists={this.props.userPlaylists}/>
                 </div>
             );
         } else {

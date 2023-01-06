@@ -17,6 +17,49 @@ const Spotify = {
             id: userResponse.id,
         };
         
+    },
+
+    async getUserPlaylists(token, userID) {
+        const headers = this.createAuthHeader(token);
+        let playlistResponse = await fetch(`${SPOTIFY_BASE_URL}/users/${userID}/playlists`, {headers});
+        playlistResponse = await playlistResponse.json();
+
+        return playlistResponse.items.map(playlist => {
+            return {
+                name: playlist.name,
+                id: playlist.id,
+                image_url: playlist.images[0].url,
+            }
+        })
+    },
+
+    async getPlaylistSongs(token, playlistID) {
+        const headers = this.createAuthHeader(token);
+        let songResponse = await fetch(`${SPOTIFY_BASE_URL}/playlists/${playlistID}/tracks`, {headers});
+        songResponse = await songResponse.json();
+
+        return songResponse.items.map(item => {
+            return {
+                title: item.track.name,
+                artist: item.track.artists[0].name
+            }
+        });
+    },
+
+    async findMatchingSongs(token, songs) {
+        const headers = this.createAuthHeader(token);
+        let validSongs = songs.filter(song => {
+            return song.length > 0
+        })
+
+        let matchingTracks = await Promise.all(validSongs.map(song => {
+            return fetch(`https://api.spotify.com/v1/search?type=track&q=${song}`, {headers}).then(response => response.json());
+        }));
+
+        return matchingTracks.map(tracks => {
+            let song = tracks.tracks.items[0];
+            return song.id
+        })
     }
 }
 
