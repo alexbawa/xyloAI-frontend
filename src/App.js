@@ -21,15 +21,27 @@ class App extends React.Component {
     this.addDraft = this.addDraft.bind(this);
     this.updateUserPlaylists = this.updateUserPlaylists.bind(this);
     this.updateToken = this.updateToken.bind(this);
+    this.updateDraftName = this.updateDraftName.bind(this);
   }
 
   updateUser(newUser) {
-    this.setState({user: newUser})
+    this.setState({user: newUser});
   }
 
   addDraft(newDraft) {
-    let currentUser = this.state.user
-    currentUser.drafts.push(newDraft)
+    let currentUser = this.state.user;
+    currentUser.drafts.push(newDraft);
+    this.setState({
+      user: currentUser
+    });
+  }
+
+  updateDraftName(playlistID, newName) {
+    let currentUser = this.state.user;
+    let playlistIndex = currentUser.drafts.findIndex(draft => {
+      return draft._id === playlistID
+    });
+    currentUser.drafts[playlistIndex].name = newName;
     this.setState({
       user: currentUser
     })
@@ -50,7 +62,7 @@ class App extends React.Component {
         <Routes>
           <Route path="/" element={<Landing user={this.state.user}/>}/>
           <Route path="/dashboard" element={<Dashboard addDraft={this.addDraft} token={this.state.token} userPlaylists={this.state.userPlaylists} user={this.state.user}/>}/>
-          <Route path="/draft/:draftID" element={<DraftPage user={this.state.user} token={this.state.token}/>}/>
+          <Route path="/draft/:draftID" element={<DraftPage updateDraftName={this.updateDraftName} user={this.state.user} token={this.state.token}/>}/>
           <Route path="/loginHandler/" element={<LoginHandler user={this.state.user} updateUser={this.updateUser} updateUserPlaylists={this.updateUserPlaylists} updateAuth={this.updateToken}/>}/>
         </Routes>
       </BrowserRouter>

@@ -52,6 +52,32 @@ const Server = {
         createdPlaylist = await createdPlaylist.json();
         return createdPlaylist;
     },
+
+    async updatePlaylistName(userID, playlistID, newName) {
+        let updatedPlaylist = await fetch(`${BACKEND_BASE_URL}/user/${userID}/playlist/${playlistID}/changeName`, {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: "PUT",
+            body: JSON.stringify({name: newName})
+        })
+
+        updatedPlaylist = await updatedPlaylist.json();
+        return updatedPlaylist;
+    },
+
+    async publishPlaylist(userID, playlistID, token) {
+        let publishedPlaylist = await fetch(`${BACKEND_BASE_URL}/user/${userID}/playlist/${playlistID}/publish`, {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: "PUT",
+            body: JSON.stringify({spotifyToken: token})
+        })
+
+        publishedPlaylist = await publishedPlaylist.json();
+        return publishedPlaylist;
+    }
 }
 
 export default Server;

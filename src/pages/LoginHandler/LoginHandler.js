@@ -11,7 +11,6 @@ class LoginHandler extends React.Component {
         this.props.updateAuth({token}, timeout);
         
         const spotifyUser = await Spotify.getSpotifyUser(token);
-
         const user = await Server.getUserByEmail(spotifyUser.email);
         const playlists = await Spotify.getUserPlaylists(token, spotifyUser.id);
 

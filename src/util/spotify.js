@@ -73,8 +73,10 @@ const Spotify = {
             return {
                 id: song.id,
                 title: song.name,
+                album: song.album.name,
                 artists: song.artists.map(artist => artist.name),
-                coverArt: song.album.images[0].url,
+                cover_art: song.album.images[0].url,
+                url: song.external_urls.spotify,
             }
         })
     }
