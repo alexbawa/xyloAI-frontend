@@ -22,7 +22,7 @@ class LoginHandler extends React.Component {
 
     render() {
         if(this.props.user) {
-            return <Navigate to="/dashboard"/>
+            return <Navigate to="/generate"/>
         } else {
             return (
                 <div className="page-container">

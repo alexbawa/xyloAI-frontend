@@ -2,9 +2,9 @@ import React from "react";
 import { AUTH_PATH } from "../../constants";
 import PageMenu from "../../components/PageMenu/PageMenu";
 import SpotifyLogo from "./assets/spotify-white.png";
-import "./Landing.scss";
+import "./LandingPage.scss";
 
-class Landing extends React.Component {
+class LandingPage extends React.Component {
     constructor(props) {
         super(props);
 
@@ -50,4 +50,4 @@ class Landing extends React.Component {
     }
 }
 
-export default Landing;
+export default LandingPage;

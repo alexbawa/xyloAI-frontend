@@ -10,7 +10,6 @@ const Spotify = {
     async getSpotifyUser(token) {
         const headers = this.createAuthHeader(token);
         let userResponse = await fetch(`${SPOTIFY_BASE_URL}/me`, {headers});
-        console.log(userResponse);
         userResponse = await userResponse.json();
     
         return {

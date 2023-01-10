@@ -2,9 +2,9 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 import PageMenu from "../../components/PageMenu/PageMenu";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import "./Dashboard.scss";
+import "./GeneratePage.scss";
 
-class Dashboard extends React.Component {
+class GeneratePage extends React.Component {
     render() {
         if(this.props.user) {
             return (
@@ -16,8 +16,12 @@ class Dashboard extends React.Component {
                                 name: "Home",
                             },
                             {
-                                url: "/dashboard",
-                                name: "Dashboard",
+                                url: "/generate",
+                                name: "Generate",
+                            },
+                            {
+                                url: "/drafts",
+                                name: "Drafts",
                             },
                             {
                                 url: "/account",
@@ -35,12 +39,4 @@ class Dashboard extends React.Component {
     }
 }
 
-/*
-    import DraftDisplay from "../../components/DraftDisplay/DraftDisplay";  
-    <div className="page-container">
-        
-        <DraftDisplay drafts={this.props.user.drafts}/>
-    </div>
-*/
-
-export default Dashboard;
+export default GeneratePage;

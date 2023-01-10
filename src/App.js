@@ -1,7 +1,7 @@
 import React from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Landing from "./pages/Landing/Landing";
-import Dashboard from "./pages/Dashboard/Dashboard";
+import LandingPage from "./pages/LandingPage/LandingPage";
+import GeneratePage from "./pages/GeneratePage/GeneratePage";
 import LoginHandler from "./pages/LoginHandler/LoginHandler";
 import DraftPage from "./pages/DraftPage/DraftPage";
 import './App.css';
@@ -60,8 +60,8 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Landing user={this.state.user}/>}/>
-          <Route path="/dashboard" element={<Dashboard user={this.state.user} token={this.state.token} userPlaylists={this.state.userPlaylists} addDraft={this.addDraft}/>}/>
+          <Route path="/" element={<LandingPage user={this.state.user}/>}/>
+          <Route path="/generate" element={<GeneratePage user={this.state.user} token={this.state.token} userPlaylists={this.state.userPlaylists} addDraft={this.addDraft}/>}/>
           <Route path="/draft/:draftID" element={<DraftPage user={this.state.user} token={this.state.token} updateDraftName={this.updateDraftName}/>}/>
           <Route path="/loginHandler/" element={<LoginHandler user={this.state.user} updateUser={this.updateUser} updateUserPlaylists={this.updateUserPlaylists} updateAuth={this.updateToken}/>}/>
         </Routes>
