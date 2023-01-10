@@ -1,24 +1,31 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
+import PageMenu from "../../components/PageMenu/PageMenu";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import DraftDisplay from "../../components/DraftDisplay/DraftDisplay";
+import "./Dashboard.scss";
 
 class Dashboard extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleLogout = this.handleLogout.bind(this);
-    }
-
-    handleLogout() {
-        this.props.updateUser(null);
-    }
-
     render() {
         if(this.props.user) {
             return (
                 <div className="page-container">
+                    <div className="dashboard-top">
+                        <PageMenu pages={[
+                            {
+                                url: "/",
+                                name: "Home",
+                            },
+                            {
+                                url: "/dashboard",
+                                name: "Dashboard",
+                            },
+                            {
+                                url: "/account",
+                                name: "Account",
+                            },
+                        ]}/>
+                    </div>
                     <SearchBar addDraft={this.props.addDraft} token={this.props.token} user={this.props.user} userPlaylists={this.props.userPlaylists}/>
-                    <DraftDisplay drafts={this.props.user.drafts}/>
                 </div>
             );
         } else {
@@ -27,5 +34,13 @@ class Dashboard extends React.Component {
         
     }
 }
+
+/*
+    import DraftDisplay from "../../components/DraftDisplay/DraftDisplay";  
+    <div className="page-container">
+        
+        <DraftDisplay drafts={this.props.user.drafts}/>
+    </div>
+*/
 
 export default Dashboard;

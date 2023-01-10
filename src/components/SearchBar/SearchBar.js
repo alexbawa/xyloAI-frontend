@@ -1,4 +1,5 @@
 import React from "react";
+import { Navigate } from "react-router-dom";
 import Server from "../../util/server";
 import Spotify from "../../util/spotify";
 import Arrow from "./assets/arrow_forward.png"
@@ -10,7 +11,7 @@ class SearchBar extends React.Component {
         this.state = {
             description: "",
             inspiration: this.props.userPlaylists[0].id,
-            generated: false,
+            draftID: null,
         }
 
         this.updateDescription = this.updateDescription.bind(this);
@@ -38,6 +39,9 @@ class SearchBar extends React.Component {
             let matchingSongs = await Spotify.findMatchingSongs(this.props.token, generatedSongs);
             let draftPlaylist = await Server.createPlaylist(this.props.user._id, matchingSongs);
             this.props.addDraft(draftPlaylist);
+            this.setState({
+                draftID: draftPlaylist._id,
+            })
         } else {
             alert("Please configure all playlist options.")
         }
@@ -56,23 +60,35 @@ class SearchBar extends React.Component {
     }
 
     render() {
-        if(!this.state.generated) {
+        if(!this.state.draftID) {
             return (
-                <div className="searchbar-container">
-                    <p>Make me a</p>
-                    <input onChange={this.updateDescription} id="playlist-description" placeholder="" type="text"/>
-                    <p>playlist based on</p>
-                    <select onChange={this.updateInspiration} name="playlist-inspiration" id="playlist-inspiration">
-                        {this.props.userPlaylists.map(playlist => {
-                            return <option value={playlist.id} key={playlist.id}>{playlist.name}</option>
-                        })}
-                    </select>
-                    <img onClick={this.handleGenerate} src={Arrow} alt="arrow forward"/>
+                <div className="searchbar-full-container">
+                    <div className="searchbar-container">
+                        <p>Make me a</p>
+                        <input onChange={this.updateDescription} id="playlist-description" placeholder="(optional description)" type="text"/>
+                        <p>playlist based on</p>
+                        <select onChange={this.updateInspiration} name="playlist-inspiration" id="playlist-inspiration">
+                            {this.props.userPlaylists.map(playlist => {
+                                return <option value={playlist.id} key={playlist.id}>{playlist.name}</option>
+                            })}
+                        </select>
+                        <img onClick={this.handleGenerate} src={Arrow} alt="arrow forward"/>
+                    </div>
+                    <div className="searchbar-status-container">
+
+                    </div>
                 </div>
             );
+        } else {
+            return <Navigate to={`drafts/${this.state.draftID}`}/>
         }
-        
     }
 }
+
+/*
+    <div className="searchbar-container">
+                    
+                </div>
+*/
 
 export default SearchBar;

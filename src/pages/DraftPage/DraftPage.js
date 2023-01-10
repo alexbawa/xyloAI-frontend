@@ -28,7 +28,7 @@ class DraftPage extends React.Component {
         let playlist = this.props.user.drafts.find(draft => {
             return draft._id === this.state.id
         });
-        let songs = await Spotify.batchGetSongsByID(this.props.token, playlist.songs);
+        let songs = await Spotify.batchGetSongsByID(this.props.token, playlist.song_ids);
         this.setState({
             songs,
             name: playlist.name
@@ -60,7 +60,7 @@ class DraftPage extends React.Component {
     async publishDraft(event) {
         event.preventDefault();
         let playlist = await Server.publishPlaylist(this.props.user._id, this.state.id, this.props.token);
-        console.log(playlist);
+        console.log(playlist.external_urls.spotify);
     }
 
     renderHeader() {

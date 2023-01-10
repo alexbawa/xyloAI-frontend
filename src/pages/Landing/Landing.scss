@@ -1,0 +1,64 @@
+@import "../../index.scss";
+
+.landing-top {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.start-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-right: 120px;
+    background-color: $style-midblue;
+    color: $style-white;
+    padding: 2px 12px 2px 12px;
+    border-radius: 40px;
+    cursor: pointer;
+}
+
+.start-button img {
+    margin-left: 8px;
+    height: 28px;
+}
+
+.landing-splash {
+    margin-top: 70px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.splash-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+p.splash-heading {
+    font-size: $font-size-title;
+    font-weight: $font-weight-bold;
+    margin-bottom: 8px;
+}
+
+p.splash-text {
+    margin-top: 0px;
+    font-size: $font-size-small-heading;
+    font-weight: $font-weight-normal;
+    max-width: 400px;
+}
+
+.splash-graphic {
+    margin-left: 90px;
+    height: 480px;
+    width: 480px;
+    border: 1px dashed $style-black;
+    border-radius: 50px;
+}

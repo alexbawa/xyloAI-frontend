@@ -7,7 +7,7 @@ class DraftBasic extends React.Component {
         return (
             <Link to={`/draft/${this.props.draft._id}`} className="draft">
                 <h4 className="draft-name">{this.props.draft.name}</h4>
-                <p className="draft-count">{this.props.draft.songs.length} songs</p>
+                <p className="draft-count">{this.props.draft.song_ids.length} songs</p>
             </Link>
         )
     }

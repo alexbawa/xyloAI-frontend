@@ -10,6 +10,7 @@ const Server = {
             }
             throw new Error("User does not exist");
         } catch (err) {
+            console.log(err);
             let user = await fetch(`${BACKEND_BASE_URL}/user/`, {
                 headers: {
                     "Content-Type": "application/json"

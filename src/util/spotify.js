@@ -10,6 +10,7 @@ const Spotify = {
     async getSpotifyUser(token) {
         const headers = this.createAuthHeader(token);
         let userResponse = await fetch(`${SPOTIFY_BASE_URL}/me`, {headers});
+        console.log(userResponse);
         userResponse = await userResponse.json();
     
         return {
@@ -28,7 +29,7 @@ const Spotify = {
             return {
                 name: playlist.name,
                 id: playlist.id,
-                image_url: playlist.images[0].url,
+                image_url: playlist.images[0] ? playlist.images[0].url : null,
             }
         })
     },
@@ -57,8 +58,15 @@ const Spotify = {
         }));
 
         return matchingTracks.map(tracks => {
-            let song = tracks.tracks.items[0];
-            return song.id
+            try {
+                let song = tracks.tracks.items[0];
+                return {
+                    id: song.id,
+                    uri: song.uri,
+                }
+            } catch {
+                return null;
+            }
         })
     },
 

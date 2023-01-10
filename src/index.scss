@@ -1,0 +1,22 @@
+$style-white: white;
+$style-lightblue: #81C3D7;
+$style-midblue: #247BA0;
+$style-darkblue: #2F6690;
+$style-black: #1D1E18;
+
+$font-family: 'Nunito', sans-serif;
+$font-weight-normal: 400;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$font-size-normal: 15px;
+$font-size-small-heading: 20px;
+$font-size-large-heading: 30px;
+$font-size-title: 40px;
+
+body {
+  margin: 0;
+  font-family: $font-family;
+  background-color: white;
+  color: $style-black;
+}

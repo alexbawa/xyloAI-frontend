@@ -2,6 +2,8 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 import Spotify from "../../util/spotify";
 import Server from "../../util/server";
+import SpotifyLogo from "./assets/spotify-black.png";
+import "./LoginHandler.scss";
 
 class LoginHandler extends React.Component {
     async componentDidMount() {
@@ -24,7 +26,10 @@ class LoginHandler extends React.Component {
         } else {
             return (
                 <div className="page-container">
-                    <p>Communicating with Spotify ... </p>
+                    <div className="login-handler">
+                        <p>Syncing with </p>
+                        <img src={SpotifyLogo} alt="Spotify logo"/>
+                    </div>
                 </div>
             )
         }
