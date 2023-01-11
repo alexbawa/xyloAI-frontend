@@ -69,7 +69,7 @@ class App extends React.Component {
           <Route path="/contact" element={<ContactPage/>}/>
           <Route path="/generate" element={<GeneratePage user={this.state.user} token={this.state.token} userPlaylists={this.state.userPlaylists} addDraft={this.addDraft}/>}/>
           <Route path="/account" element={<AccountPage/>}/>
-          <Route path="/drafts" element={<DraftsPage/>}/>
+          <Route path="/drafts" element={<DraftsPage user={this.state.user}/>}/>
           <Route path="/draft/:draftID" element={<DraftPage user={this.state.user} token={this.state.token} updateDraftName={this.updateDraftName}/>}/>
           <Route path="/loginHandler/" element={<LoginHandler user={this.state.user} updateUser={this.updateUser} updateUserPlaylists={this.updateUserPlaylists} updateAuth={this.updateToken}/>}/>
         </Routes>
