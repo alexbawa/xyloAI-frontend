@@ -1,21 +1,24 @@
+@import "../../index.scss";
+
 .song-component {
-    width: 60%;
-    max-width: 60%;
-    margin: 4px;
-    background-color: rgb(240, 232, 238);
-    padding: 15px;
+    width: 100%;
+    max-width: 100%;
+    margin: 3px;
+    background-color: $style-white;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
-    border-radius: 8px;
     text-decoration: none;
-    color: black;
+    color: $style-black;
+    padding: 8px;
+    border-radius: 12px;
+    border: 0.75px solid $style-white;
 }
 
 .song-component:hover {
-    background-color: rgb(234, 187, 222);
+    border: 0.75px solid $style-lightblue;
 }
 
 .song-container {
@@ -43,10 +46,10 @@
 }
 
 .song-title {
-    font-weight: 600;
+    font-weight: $font-weight-semibold;
 }
 
 .spotify-logo {
-    height: 40px;
+    height: 25px;
     margin-right: 15px;
 }

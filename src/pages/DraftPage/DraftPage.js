@@ -39,7 +39,7 @@ class DraftPage extends React.Component {
 
     updateName() {
         this.setState({
-            name: document.getElementById("playlist-input").value,
+            name: document.getElementById("draft-input").value,
         });
     }
 
@@ -69,14 +69,14 @@ class DraftPage extends React.Component {
         if(!this.state.editing) {
             return (
                 <div className="draft-header">
-                    <p className="draft-title">{this.state.name}</p>
+                    <p>{this.state.name}</p>
                     <img onClick={this.startEditing} src={EditIcon} alt="edit button"/>
                 </div>
             )
         } else {
             return (
                 <div className="draft-header">
-                    <input id="draft-input" onChange={this.updateName} className="draft-title draft-input" type="text" value={this.state.name}/>
+                    <input id="draft-input" onChange={this.updateName} type="text" value={this.state.name}/>
                     <img onClick={this.saveEdits} src={SaveIcon} alt="save button"/>
                 </div>
             )
@@ -106,6 +106,10 @@ class DraftPage extends React.Component {
                                 name: "Account",
                             },
                         ]}/>
+                        <div onClick={this.publishDraft} className="publish-button">
+                            <p>Publish to</p>
+                            <img src={SpotifyWhite} alt="Spotify Logo"/>
+                        </div>
                     </div>
                     {this.renderHeader()}
                     <SongList songs={this.state.songs}/>
@@ -114,18 +118,7 @@ class DraftPage extends React.Component {
         } else {
             return <Navigate to="/"/>
         }
-        
     }
 }
-
-/*
-return (
-            <div className="page-container">
-                
-                
-                <SongList songs={this.state.songs}/>
-            </div>
-        )
-*/
 
 export default DraftPage;
