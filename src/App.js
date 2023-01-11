@@ -4,8 +4,10 @@ import LandingPage from "./pages/LandingPage/LandingPage";
 import AboutPage from "./pages/AboutPage/AboutPage";
 import ContactPage from "./pages/ContactPage/ContactPage";
 import GeneratePage from "./pages/GeneratePage/GeneratePage";
-import LoginHandler from "./pages/LoginHandler/LoginHandler";
+import AccountPage from "./pages/AccountPage/AccountPage";
+import DraftsPage from "./pages/DraftsPage/DraftsPage";
 import DraftPage from "./pages/DraftPage/DraftPage";
+import LoginHandler from "./pages/LoginHandler/LoginHandler";
 import './App.css';
 
 
@@ -66,6 +68,8 @@ class App extends React.Component {
           <Route path="/about" element={<AboutPage/>}/>
           <Route path="/contact" element={<ContactPage/>}/>
           <Route path="/generate" element={<GeneratePage user={this.state.user} token={this.state.token} userPlaylists={this.state.userPlaylists} addDraft={this.addDraft}/>}/>
+          <Route path="/account" element={<AccountPage/>}/>
+          <Route path="/drafts" element={<DraftsPage/>}/>
           <Route path="/draft/:draftID" element={<DraftPage user={this.state.user} token={this.state.token} updateDraftName={this.updateDraftName}/>}/>
           <Route path="/loginHandler/" element={<LoginHandler user={this.state.user} updateUser={this.updateUser} updateUserPlaylists={this.updateUserPlaylists} updateAuth={this.updateToken}/>}/>
         </Routes>
