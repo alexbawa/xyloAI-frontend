@@ -3,7 +3,7 @@
 .song-component {
     width: 100%;
     max-width: 100%;
-    margin: 3px;
+    margin: 6px;
     background-color: $style-white;
     display: flex;
     flex-direction: row;
@@ -12,13 +12,14 @@
     cursor: pointer;
     text-decoration: none;
     color: $style-black;
-    padding: 8px;
-    border-radius: 12px;
-    border: 0.75px solid $style-white;
+    padding: 12px;
+    border-radius: 18px;
+    border: 0.75px solid $style-midblue;
 }
 
 .song-component:hover {
-    border: 0.75px solid $style-lightblue;
+    color: $style-white;
+    background-color: $style-midblue;
 }
 
 .song-container {

@@ -34,7 +34,10 @@ class DraftsPage extends React.Component {
 
                 return (
                     <Link key={draft._id} to={`/draft/${draft._id}`} className="draft">
-                        <p className="draft-name">{draft.name}</p>
+                        <div>
+                            <p className="draft-name">{draft.name}</p>
+                            <p className="draft-count">{draft.song_ids.length} songs</p>
+                        </div>
                         <p className="draft-timestamp">Created: {dateString}</p>
                     </Link>
                 )
