@@ -1,6 +1,8 @@
 import React from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage/LandingPage";
+import AboutPage from "./pages/AboutPage/AboutPage";
+import ContactPage from "./pages/ContactPage/ContactPage";
 import GeneratePage from "./pages/GeneratePage/GeneratePage";
 import LoginHandler from "./pages/LoginHandler/LoginHandler";
 import DraftPage from "./pages/DraftPage/DraftPage";
@@ -61,6 +63,8 @@ class App extends React.Component {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage user={this.state.user}/>}/>
+          <Route path="/about" element={<AboutPage/>}/>
+          <Route path="/contact" element={<ContactPage/>}/>
           <Route path="/generate" element={<GeneratePage user={this.state.user} token={this.state.token} userPlaylists={this.state.userPlaylists} addDraft={this.addDraft}/>}/>
           <Route path="/draft/:draftID" element={<DraftPage user={this.state.user} token={this.state.token} updateDraftName={this.updateDraftName}/>}/>
           <Route path="/loginHandler/" element={<LoginHandler user={this.state.user} updateUser={this.updateUser} updateUserPlaylists={this.updateUserPlaylists} updateAuth={this.updateToken}/>}/>

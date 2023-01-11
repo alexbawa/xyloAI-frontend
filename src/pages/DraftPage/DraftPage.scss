@@ -1,4 +1,13 @@
-.playlist-top {
+.draft-top {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+/*.playlist-top {
     width: 60%;
     display: flex;
     flex-direction: row;
@@ -66,7 +75,7 @@
 
 .publish-button img {
     height: 40px;
-}
+}*/
 
 
 
