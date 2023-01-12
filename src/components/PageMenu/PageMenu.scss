@@ -1,0 +1,34 @@
+@import "../../index.scss";
+
+.page-menu-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 150px;
+}
+
+.logo {
+    height: 70px;
+    margin-right: 20px;
+}
+
+.page-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.page-menu a {
+    text-decoration: none;
+    color: $style-black;
+    font-weight: $font-weight-normal;
+    font-size: $font-size-small-heading;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.page-menu a:hover {
+    font-weight: $font-weight-bold;
+}

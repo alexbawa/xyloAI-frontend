@@ -1,0 +1,19 @@
+@import "../../index.scss";
+
+.login-handler {
+    margin-top: 150px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-handler p {
+    font-weight: $font-weight-semibold;
+    font-size: $font-size-small-heading;
+}
+
+.login-handler img {
+    margin-left: 10px;
+    height: 50px;
+}

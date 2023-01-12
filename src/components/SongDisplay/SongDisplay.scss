@@ -1,0 +1,56 @@
+@import "../../index.scss";
+
+.song-component {
+    width: 100%;
+    max-width: 100%;
+    margin: 6px;
+    background-color: $style-white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    text-decoration: none;
+    color: $style-black;
+    padding: 12px;
+    border-radius: 18px;
+    border: 0.75px solid $style-midblue;
+}
+
+.song-component:hover {
+    color: $style-white;
+    background-color: $style-midblue;
+}
+
+.song-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.song-container .album-art {
+    height: 50px;
+    width: 50px;
+}
+
+.song-metadata {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 20px;
+}
+
+.song-metadata p {
+    margin: 0;
+}
+
+.song-title {
+    font-weight: $font-weight-semibold;
+}
+
+.spotify-logo {
+    height: 25px;
+    margin-right: 15px;
+}
