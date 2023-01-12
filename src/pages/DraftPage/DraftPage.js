@@ -17,6 +17,7 @@ class DraftPage extends React.Component {
             name: null,
             songs: [],
             editing: false,
+            generated: false,
         }
 
         this.updateName = this.updateName.bind(this);
@@ -61,8 +62,15 @@ class DraftPage extends React.Component {
 
     async publishDraft(event) {
         event.preventDefault();
-        let playlist = await Server.publishPlaylist(this.props.user._id, this.state.id, this.props.token);
-        console.log(playlist.external_urls.spotify);
+        const playlist = await Server.publishPlaylist(this.props.user._id, this.state.id, this.props.token);
+        this.props.removePlaylist(this.state.id);
+
+        let url = playlist.external_urls.spotify
+        window.open(url, "_blank");
+
+        this.setState({
+            generated: true,
+        })
     }
 
     renderHeader() {
@@ -85,36 +93,40 @@ class DraftPage extends React.Component {
 
     render() {
         if(this.props.user) {
-            return (
-                <div className="page-container">
-                    <div className="draft-top">
-                        <PageMenu pages={[
-                            {
-                                url: "/",
-                                name: "Home",
-                            },
-                            {
-                                url: "/generate",
-                                name: "Generate",
-                            },
-                            {
-                                url: "/drafts",
-                                name: "Drafts",
-                            },
-                            {
-                                url: "/account",
-                                name: "Account",
-                            },
-                        ]}/>
-                        <div onClick={this.publishDraft} className="publish-button">
-                            <p>Publish to</p>
-                            <img src={SpotifyWhite} alt="Spotify Logo"/>
+            if(!this.state.generated) {
+                return (
+                    <div className="page-container">
+                        <div className="draft-top">
+                            <PageMenu pages={[
+                                {
+                                    url: "/",
+                                    name: "Home",
+                                },
+                                {
+                                    url: "/generate",
+                                    name: "Generate",
+                                },
+                                {
+                                    url: "/drafts",
+                                    name: "Drafts",
+                                },
+                                {
+                                    url: "/account",
+                                    name: "Account",
+                                },
+                            ]}/>
+                            <div onClick={this.publishDraft} className="publish-button">
+                                <p>Publish to</p>
+                                <img src={SpotifyWhite} alt="Spotify Logo"/>
+                            </div>
                         </div>
+                        {this.renderHeader()}
+                        <SongList songs={this.state.songs}/>
                     </div>
-                    {this.renderHeader()}
-                    <SongList songs={this.state.songs}/>
-                </div>
-            )
+                )
+            } else {
+                return <Navigate to="/generate"/>
+            }
         } else {
             return <Navigate to="/"/>
         }
