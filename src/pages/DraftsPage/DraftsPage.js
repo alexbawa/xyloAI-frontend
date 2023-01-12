@@ -1,6 +1,7 @@
 import React from "react";
 import { Navigate, Link } from "react-router-dom";
 import PageMenu from "../../components/PageMenu/PageMenu";
+import AddBlack from "./assets/add-black.png";
 import "./DraftsPage.scss";
 
 class DraftsPage extends React.Component {
@@ -22,26 +23,34 @@ class DraftsPage extends React.Component {
                 <p className="empty-message">You have no drafts to display.</p>
             )
         } else {
-            return this.props.user.drafts.map(draft => {
-                let date = new Date(Date.parse(draft.timestamp));
-                let dateString;
+            return (
+                <div className="drafts-display">
+                    {this.props.user.drafts.map(draft => {
+                        let date = new Date(Date.parse(draft.timestamp));
+                        let dateString;
 
-                if(this.isToday(date)) {
-                    dateString = "Today"
-                } else {
-                    dateString = `${date.toLocaleDateString()}`
-                }
+                        if(this.isToday(date)) {
+                            dateString = "Today"
+                        } else {
+                            dateString = `${date.toLocaleDateString()}`
+                        }
 
-                return (
-                    <Link key={draft._id} to={`/draft/${draft._id}`} className="draft">
-                        <div>
-                            <p className="draft-name">{draft.name}</p>
-                            <p className="draft-count">{draft.song_ids.length} songs</p>
-                        </div>
-                        <p className="draft-timestamp">Created: {dateString}</p>
+                        return (
+                            <Link key={draft._id} to={`/draft/${draft._id}`} className="draft">
+                                <div>
+                                    <p className="draft-name">{draft.name}</p>
+                                    <p className="draft-count">{draft.song_ids.length} songs</p>
+                                </div>
+                                <p className="draft-timestamp">Created: {dateString}</p>
+                            </Link>
+                        )
+                    })}
+                    <Link to={`/generate`} className="draft add-symbol">
+                        <img src={AddBlack} alt="add symbol"/>
                     </Link>
-                )
-            });
+                </div>
+            );
+            
         }
     }
     render() {
@@ -68,7 +77,7 @@ class DraftsPage extends React.Component {
                             }
                         ]}/>
                     </div>
-                    <div className="drafts-display">{this.renderDrafts()}</div>
+                    {this.renderDrafts()}
                 </div>
             )
         } else {
